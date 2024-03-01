@@ -26,3 +26,4 @@ vim.keymap.set('n', '<leader>bl', '<cmd>buffer #<cr>')
 -- Git
 vim.keymap.set('n', '<leader>gs', vim.cmd.Git);
 
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')

@@ -1,3 +1,4 @@
+
 -- ========================================================================== --
 -- ==                               COMMANDS                               == --
 -- ========================================================================== --
@@ -130,10 +131,18 @@ local on_attach = function(client, bufnr)
 end
 
 
-lspconfig.lua_ls.setup({})
+lspconfig.lua_ls.setup({
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+})
 lspconfig.elixirls.setup({
   cmd = { "/opt/homebrew/bin/elixir-ls" },
-	on_attach = on_attach
+  on_attach = on_attach
 })
 
 ---
@@ -159,21 +168,21 @@ require('nvim-treesitter').setup({
 
       configs.setup({
           ensure_installed = {
-						"c",
-						"lua",
-						"vim",
-						"vimdoc",
-						"query",
-						"bash",
-						"erlang",
-						"elixir",
-						"heex",
-						"eex",
-						"javascript",
-						"html",
-						"typescript",
-						"go",
-						"python",
+			"c",
+			"lua",
+			"vim",
+			"vimdoc",
+			"query",
+			"bash",
+			"erlang",
+			"elixir",
+			"heex",
+			"eex",
+			"javascript",
+			"html",
+			"typescript",
+			"go",
+			"python",
 		        "yaml",
 		        "json",
 		        "scss",
@@ -182,15 +191,13 @@ require('nvim-treesitter').setup({
 		        "cpp",
 		        "graphql",
 		        "markdown"
-					},
-					ignore_install = { },
-          highlight = { 
-						enable = false,
+	  },
+	  ignore_install = { },
+          highlight = {
+	    enable = true,
             additional_vim_regex_highlighting = false,
-				  },
-          indent = { enable = true },  
+	  },
+          indent = { enable = true },
         })
-	
-
 
 
