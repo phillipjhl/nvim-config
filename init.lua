@@ -1,48 +1,4 @@
 -- ========================================================================== --
--- ==                           EDITOR SETTINGS                            == --
--- ========================================================================== --
-
-vim.opt.number = true
-vim.opt.mouse = 'a'
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.hlsearch = false
-vim.opt.wrap = true
-vim.opt.breakindent = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = false
-
-
--- ========================================================================== --
--- ==                             KEYBINDINGS                              == --
--- ========================================================================== --
-
--- Space as leader key
-vim.g.mapleader = ' '
-
--- Shortcuts
-vim.keymap.set({'n', 'x', 'o'}, '<leader>h', '^')
-vim.keymap.set({'n', 'x', 'o'}, '<leader>l', 'g_')
-vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
-
--- Basic clipboard interaction
-vim.keymap.set({'n', 'x'}, 'gy', '"+y') -- copy
-vim.keymap.set({'n', 'x'}, 'gp', '"+p') -- paste
-
--- Delete text
-vim.keymap.set({'n', 'x'}, 'x', '"_x')
-vim.keymap.set({'n', 'x'}, 'X', '"_d')
-
--- Commands
-vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
-vim.keymap.set('n', '<leader>bq', '<cmd>bdelete<cr>')
-vim.keymap.set('n', '<leader>bl', '<cmd>buffer #<cr>')
-
--- Git
-vim.keymap.set('n', '<leader>gs', vim.cmd.Git);
-
--- ========================================================================== --
 -- ==                               COMMANDS                               == --
 -- ========================================================================== --
 
@@ -103,20 +59,22 @@ lazy.path = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 lazy.opts = {}
 
 lazy.setup({
-	{'nvim-treesitter/nvim-treesitter'},
-  {'kyazdani42/nvim-web-devicons'},
 	{'Shatur/neovim-ayu'},
-  {'nvim-lualine/lualine.nvim'},
+	{'nvim-treesitter/nvim-treesitter'},
+  	{'kyazdani42/nvim-web-devicons'},
+  	{'nvim-lualine/lualine.nvim'},
 	{'nvim-treesitter/playground'},
 	{'nvim-lua/plenary.nvim'},
 	{'tpope/vim-fugitive'},
 	{'neovim/nvim-lspconfig'},
-  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-  {'neovim/nvim-lspconfig'},
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/nvim-cmp'},
+	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
+	{'neovim/nvim-lspconfig'},
+	{'hrsh7th/cmp-nvim-lsp'},
+	{'hrsh7th/nvim-cmp'},
 	{'hrsh7th/vim-vsnip'},
-  {'L3MON4D3/LuaSnip'}
+	{'L3MON4D3/LuaSnip'},
+	{'nvim-telescope/telescope.nvim', tag = '0.1.5'},
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
 })
 
 
@@ -127,17 +85,18 @@ lazy.setup({
 ---
 -- Colorscheme
 ---
+
 require('ayu').setup({
-    overrides = {},
+    mirage = false -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
 })
-vim.opt.termguicolors = true
+require('ayu').colorscheme()
 
 -- lualine.nvim (statusline)
 ---
 vim.opt.showmode = false
 require('lualine').setup({
   options = {
-    icons_enabled = false,
+    icons_enabled = true,
     theme = 'ayu',
     component_separators = '|',
     section_separators = '',
@@ -178,6 +137,18 @@ lspconfig.elixirls.setup({
 })
 
 ---
+-- Telescope
+--
+require('telescope').setup({
+  pickers = {
+    find_files = {
+      theme = "dropdown",
+    }
+  }
+})
+require('telescope').load_extension('fzf')
+
+---
 -- Treesitter
 --- 
 require('nvim-treesitter').setup({
@@ -210,10 +181,11 @@ require('nvim-treesitter').setup({
 		        "dockerfile",
 		        "cpp",
 		        "graphql",
+		        "markdown"
 					},
 					ignore_install = { },
           highlight = { 
-						enable = true,
+						enable = false,
             additional_vim_regex_highlighting = false,
 				  },
           indent = { enable = true },  
