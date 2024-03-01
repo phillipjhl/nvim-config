@@ -1,3 +1,5 @@
+-- Require other modules
+require("init")
 
 -- ========================================================================== --
 -- ==                               COMMANDS                               == --
@@ -73,7 +75,9 @@ lazy.setup({
 	{'hrsh7th/cmp-nvim-lsp'},
 	{'hrsh7th/nvim-cmp'},
 	{'hrsh7th/vim-vsnip'},
-  {'L3MON4D3/LuaSnip'},
+        {'L3MON4D3/LuaSnip'},
+  	{'nvim-telescope/telescope.nvim', tag = '0.1.5'},
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 	{'christoomey/vim-tmux-navigator',
 cmd = {
     "TmuxNavigateLeft",
