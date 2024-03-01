@@ -91,7 +91,7 @@ function lazy.setup(plugins)
   end
 
   -- You can "comment out" the line below after lazy.nvim is installed
-  -- lazy.install(lazy.path)
+  lazy.install(lazy.path)
 
   vim.opt.rtp:prepend(lazy.path)
 
@@ -110,13 +110,29 @@ lazy.setup({
 	{'nvim-treesitter/playground'},
 	{'nvim-lua/plenary.nvim'},
 	{'tpope/vim-fugitive'},
-	{'neovim/nvim-lspconfig'},
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
   {'neovim/nvim-lspconfig'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
 	{'hrsh7th/vim-vsnip'},
-  {'L3MON4D3/LuaSnip'}
+  {'L3MON4D3/LuaSnip'},
+	{'christoomey/vim-tmux-navigator',
+cmd = {
+    "TmuxNavigateLeft",
+    "TmuxNavigateDown",
+    "TmuxNavigateUp",
+    "TmuxNavigateRight",
+    "TmuxNavigatePrevious",
+  },
+  keys = {
+    { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+    { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+    { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+    { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+    { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+  }
+
+	}
 })
 
 
@@ -176,6 +192,9 @@ lspconfig.elixirls.setup({
   cmd = { "/opt/homebrew/bin/elixir-ls" },
 	on_attach = on_attach
 })
+lspconfig.gopls.setup({
+  cmd = { "/usr/bin/gopls"}
+})
 
 ---
 -- Treesitter
@@ -183,10 +202,10 @@ lspconfig.elixirls.setup({
 require('nvim-treesitter').setup({
     build = ":TSUpdate",
 })
- 
-      local configs = require("nvim-treesitter.configs")
 
-      configs.setup({
+local configs = require("nvim-treesitter.configs")
+
+configs.setup({
           ensure_installed = {
 						"c",
 						"lua",
@@ -212,13 +231,15 @@ require('nvim-treesitter').setup({
 		        "graphql",
 					},
 					ignore_install = { },
-          highlight = { 
+          highlight = {
 						enable = true,
             additional_vim_regex_highlighting = false,
 				  },
-          indent = { enable = true },  
+          indent = { enable = true },
         })
-	
 
+---
+-- Navigator
+--
 
 
