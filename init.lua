@@ -79,6 +79,7 @@ lazy.setup({
   	{'nvim-telescope/telescope.nvim', tag = '0.1.5'},
 	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 	{'christoomey/vim-tmux-navigator',
+	{'numToStr/Comment.nvim'},
 cmd = {
     "TmuxNavigateLeft",
     "TmuxNavigateDown",
@@ -93,7 +94,6 @@ cmd = {
     { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
     { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
   }
-
 	}
 })
 
@@ -164,7 +164,7 @@ lspconfig.elixirls.setup({
   on_attach = on_attach
 })
 lspconfig.gopls.setup({
-  cmd = { "/usr/bin/gopls"}
+--  cmd = { "/usr/bin/gopls"}
 })
 
 ---
@@ -226,4 +226,7 @@ configs.setup({
 -- Navigator
 --
 
-
+---
+-- Commenter
+---
+require('Comment').setup()
