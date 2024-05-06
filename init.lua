@@ -80,6 +80,7 @@ lazy.setup({
 	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 	{'christoomey/vim-tmux-navigator',
 	{'airblade/vim-gitgutter'},
+	{'sindrets/diffview.nvim'},
 	{'numToStr/Comment.nvim'},
 cmd = {
     "TmuxNavigateLeft",
