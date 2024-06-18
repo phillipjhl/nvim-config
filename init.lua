@@ -75,14 +75,14 @@ lazy.setup({
 	{'hrsh7th/cmp-nvim-lsp'},
 	{'hrsh7th/nvim-cmp'},
 	{'hrsh7th/vim-vsnip'},
-        {'L3MON4D3/LuaSnip'},
+    {'L3MON4D3/LuaSnip'},
   	{'nvim-telescope/telescope.nvim', tag = '0.1.5'},
 	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-	{'christoomey/vim-tmux-navigator',
 	{'airblade/vim-gitgutter'},
 	{'sindrets/diffview.nvim'},
 	{'numToStr/Comment.nvim'},
-cmd = {
+	{'christoomey/vim-tmux-navigator',
+		cmd = {
     "TmuxNavigateLeft",
     "TmuxNavigateDown",
     "TmuxNavigateUp",
@@ -151,6 +151,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 lspconfig.lua_ls.setup({
     settings = {
@@ -162,11 +163,13 @@ lspconfig.lua_ls.setup({
     }
 })
 lspconfig.elixirls.setup({
+  capabilities = capabilities,
   cmd = { "/opt/homebrew/bin/elixir-ls" },
   on_attach = on_attach
 })
 lspconfig.gopls.setup({
---  cmd = { "/usr/bin/gopls"}
+	on_attach = on_attach,
+    -- cmd = { "/usr/bin/gopls"}
 })
 
 ---
@@ -232,3 +235,7 @@ configs.setup({
 -- Commenter
 ---
 require('Comment').setup()
+
+---
+-- CMP
+---
