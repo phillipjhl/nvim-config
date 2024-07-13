@@ -167,6 +167,7 @@ lspconfig.elixirls.setup({
 })
 lspconfig.gopls.setup({
 	on_attach = on_attach,
+  cmd = { "~/.asdf/shims/gopls"}
     -- cmd = { "/usr/bin/gopls"}
 })
 lspconfig.bashls.setup{}
@@ -180,6 +181,7 @@ require('cmp').setup({
 			require('luasnip').lsp_expand(args.body)
 		end
 	}
+    
 })
 
 ---
