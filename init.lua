@@ -63,6 +63,7 @@ lazy.opts = {}
 
 lazy.setup({
 	{'Shatur/neovim-ayu'},
+	{'folke/tokyonight.nvim'},
 	{'nvim-treesitter/nvim-treesitter'},
   	{'kyazdani42/nvim-web-devicons'},
   	{'nvim-lualine/lualine.nvim'},
@@ -76,7 +77,7 @@ lazy.setup({
 	{'hrsh7th/nvim-cmp'},
 	{'hrsh7th/vim-vsnip'},
     {'L3MON4D3/LuaSnip'},
-  	{'nvim-telescope/telescope.nvim', tag = '0.1.5'},
+  	{'nvim-telescope/telescope.nvim', tag = '0.1.8'},
 	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 	{'airblade/vim-gitgutter'},
 	{'sindrets/diffview.nvim'},
@@ -96,7 +97,8 @@ lazy.setup({
     { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
     { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
   }
-	}
+	},
+	{"github/copilot.vim"}
 })
 
 
@@ -108,18 +110,14 @@ lazy.setup({
 -- Colorscheme
 ---
 
-require('ayu').setup({
-    mirage = false -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
-})
-require('ayu').colorscheme()
-
+vim.cmd[[colorscheme tokyonight-night]]
 -- lualine.nvim (statusline)
 ---
 vim.opt.showmode = false
 require('lualine').setup({
   options = {
     icons_enabled = true,
-    theme = 'ayu',
+    theme = 'tokyonight-night',
     component_separators = '|',
     section_separators = '',
   },
@@ -170,6 +168,18 @@ lspconfig.elixirls.setup({
 lspconfig.gopls.setup({
 	on_attach = on_attach,
     -- cmd = { "/usr/bin/gopls"}
+})
+lspconfig.bashls.setup{}
+
+--
+-- Cmp
+--
+require('cmp').setup({
+	snippet = {
+		expand = function(args)
+			require('luasnip').lsp_expand(args.body)
+		end
+	}
 })
 
 ---
