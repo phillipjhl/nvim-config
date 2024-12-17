@@ -162,15 +162,19 @@ lspconfig.lua_ls.setup({
 })
 lspconfig.elixirls.setup({
   capabilities = capabilities,
-  cmd = { "/opt/homebrew/bin/elixir-ls" },
+  -- MacOS
+  -- cmd = { "/opt/homebrew/bin/elixir-ls" },
+  -- Linux 
+  cmd = { "/home/phillipjhl/.elixir-ls/language_server.sh" },
   on_attach = on_attach
 })
 lspconfig.gopls.setup({
 	on_attach = on_attach,
-  cmd = { "~/.asdf/shims/gopls"}
-    -- cmd = { "/usr/bin/gopls"}
+ -- cmd = { "~/.asdf/shims/gopls"}
+    cmd = { "/usr/bin/gopls"}
 })
 lspconfig.bashls.setup{}
+lspconfig.clangd.setup{}
 
 --
 -- Cmp
@@ -181,7 +185,6 @@ require('cmp').setup({
 			require('luasnip').lsp_expand(args.body)
 		end
 	}
-    
 })
 
 ---
