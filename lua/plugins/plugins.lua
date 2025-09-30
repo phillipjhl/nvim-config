@@ -72,7 +72,6 @@ return {
 				section_separators = "",
 			},
 		},
-		{ "nvim-treesitter/playground" },
 		{ "nvim-lua/plenary.nvim" },
 		{ "tpope/vim-fugitive" },
 		{ "neovim/nvim-lspconfig" },
