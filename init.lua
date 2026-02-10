@@ -5,8 +5,6 @@ vim.opt.showmode = false
 ---
 -- LSP
 ---
--- require("lsp-zero")
-local lspconfig = require("lspconfig")
 -- `on_attach` callback will be called after a language server
 -- instance has been attached to an open buffer with matching filetype
 -- here we're setting key mappings for hover documentation, goto definitions, goto references, etc
@@ -28,7 +26,11 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-lspconfig.lua_ls.setup({
+vim.lsp.config("*", {
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -37,13 +39,12 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
-lspconfig.elixirls.setup({
-	capabilities = capabilities,
+
+vim.lsp.config("elixir-ls", {
 	-- MacOS
-	cmd = { "/opt/homebrew/bin/elixir-ls" },
+	-- cmd = { "/opt/homebrew/bin/elixir-ls" },
 	-- Linux
-	-- cmd = { "/home/phillipjhl/.elixir-ls/language_server.sh" },
-	on_attach = on_attach,
+	cmd = { "elixir-ls" },
 	settings = {
 		elixirLS = {
 			dialyzerEnabled = true,
@@ -52,17 +53,14 @@ lspconfig.elixirls.setup({
 		},
 	},
 })
-lspconfig.gopls.setup({
-	on_attach = on_attach,
+vim.lsp.config("gopls", {
 	cmd = { "~/.asdf/shims/gopls" },
 	-- cmd = { "/usr/bin/gopls"}
 })
-lspconfig.bashls.setup({})
-lspconfig.clangd.setup({})
-lspconfig.bashls.setup({ {
-	on_attach = on_attach,
+vim.lsp.config("bashls", {
 	cmd = { "bash-language-server", "start" },
-} })
+})
+vim.lsp.enable({ "elixir-ls", "expert", "gopls", "bashls", "clangd" })
 
 ---
 -- Telescope

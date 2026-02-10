@@ -9,8 +9,6 @@ return {
 		-- {'Shatur/neovim-ayu'},
 		-- disabled below
 		{ "folke/noice.nvim", enabled = false },
-		-- end disbaled
-		-- start overrides
 		{ "folke/which-key.nvim", enabled = false },
 		{ "folke/todo-comments.nvim", enabled = false },
 		{
@@ -20,9 +18,10 @@ return {
 				scroll = { enabled = false },
 				notifier = { enabled = false },
 				dashboard = { enabled = false },
+				explorer = { enabled = false },
 			},
 		},
-		-- end
+		-- end disbaled
 		{ "folke/tokyonight.nvim" },
 		{
 			"nvim-treesitter/nvim-treesitter",
@@ -74,8 +73,6 @@ return {
 		},
 		{ "nvim-lua/plenary.nvim" },
 		{ "tpope/vim-fugitive" },
-		{ "neovim/nvim-lspconfig" },
-		{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{
 			"hrsh7th/nvim-cmp",
@@ -88,7 +85,6 @@ return {
 			},
 		},
 		{ "hrsh7th/vim-vsnip" },
-		{ "L3MON4D3/LuaSnip" },
 		{
 			"nvim-telescope/telescope.nvim",
 			opts = {
@@ -131,6 +127,6 @@ return {
 				},
 			},
 		},
-		{ "github/copilot.vim" },
+		-- { "github/copilot.vim" },
 	},
 }
