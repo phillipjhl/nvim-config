@@ -9,7 +9,8 @@ return {
 		local cwd = vim.uv.cwd()
 		local basename = vim.fs.basename(cwd)
 		_99.setup({
-			model = "opencode/minimax-m2.1-free",
+			-- model = "opencode/minimax-m2.1-free",
+			model = "github-copilot/gpt-5-mini",
 			logger = {
 				level = _99.DEBUG,
 				path = "/tmp/" .. basename .. ".99.debug",
@@ -60,14 +61,6 @@ return {
 			},
 		})
 
-		vim.keymap.set("v", "<leader>99", function(opts)
-			_99.visual_prompt(opts)
-		end)
-
-		-- Create your own short cuts for the different types of actions
-		vim.keymap.set("n", "<leader>9f", function()
-			_99.fill_in_function()
-		end)
 		-- take extra note that i have visual selection only in v mode
 		-- technically whatever your last visual selection is, will be used
 		-- so i have this set to visual mode so i dont screw up and use an
@@ -80,16 +73,16 @@ return {
 		end)
 
 		--- if you have a request you dont want to make any changes, just cancel it
-		vim.keymap.set("v", "<leader>9s", function()
+		vim.keymap.set("n", "<leader>9x", function()
 			_99.stop_all_requests()
 		end)
 
-		--- Example: Using rules + actions for custom behaviors
-		--- Create a rule file like ~/.rules/debug.md that defines custom behavior.
-		--- For instance, a "debug" rule could automatically add printf statements
-		--- throughout a function to help debug its execution flow.
-		vim.keymap.set("n", "<leader>9fd", function()
-			_99.fill_in_function()
+		vim.keymap.set("n", "<leader>9s", function()
+			_99.search()
+		end)
+
+		vim.keymap.set("n", "<leader>9m", function()
+			require("99.extensions.telescope").select_model()
 		end)
 	end,
 }

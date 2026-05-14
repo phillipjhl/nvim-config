@@ -116,6 +116,7 @@ return {
 				{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 			},
 		},
+		{ "github/copilot.vim" },
 		{
 			"mason-org/mason.nvim",
 			opts = {
@@ -127,6 +128,5 @@ return {
 				},
 			},
 		},
-		-- { "github/copilot.vim" },
 	},
 }

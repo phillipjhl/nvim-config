@@ -28,7 +28,5 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.expandtab = false
-
 -- pluging options
 vim.g.snacks_animate = false

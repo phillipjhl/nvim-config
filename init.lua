@@ -40,11 +40,12 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("elixir-ls", {
+vim.lsp.config("elixirls", {
 	-- MacOS
-	-- cmd = { "/opt/homebrew/bin/elixir-ls" },
+	cmd = { "/opt/homebrew/bin/elixir-ls" },
 	-- Linux
-	cmd = { "elixir-ls" },
+	-- cmd = { "elixir-ls" },
+	-- cmd = { "/home/phillipjhl/.elixir-ls/language_server.sh" },
 	settings = {
 		elixirLS = {
 			dialyzerEnabled = true,
@@ -60,7 +61,13 @@ vim.lsp.config("gopls", {
 vim.lsp.config("bashls", {
 	cmd = { "bash-language-server", "start" },
 })
-vim.lsp.enable({ "elixir-ls", "expert", "gopls", "bashls", "clangd" })
+vim.lsp.enable({ "elixirls", "expert", "gopls", "bashls", "clangd", "copilot", "lua_ls" })
+-- vim.lsp.enable("lua_ls")
+-- vim.lsp.enable("gopls")
+-- vim.lsp.enable("bashls")
+-- vim.lsp.enable("clangd")
+-- vim.lsp.enable("elixirls")
+-- vim.lsp.enable("copilot")
 
 ---
 -- Telescope
